@@ -1,6 +1,9 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
 
+	export const prerender = true;
+	export const ssr = false;
+
 	let { children } = $props();
 	import "../app.css";
     import Footer from '../components/Footer.svelte';
