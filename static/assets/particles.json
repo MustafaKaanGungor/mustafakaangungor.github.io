@@ -1,14 +1,14 @@
 {
   "particles": {
     "number": {
-      "value": 189,
+      "value": 80,
       "density": {
         "enable": true,
-        "value_area": 2126.8215833005115
+        "value_area": 800
       }
     },
     "color": {
-      "value": "#fffdac"
+      "value": "#fffdb6"
     },
     "shape": {
       "type": "circle",
@@ -17,7 +17,7 @@
         "color": "#000000"
       },
       "polygon": {
-        "nb_sides": 4
+        "nb_sides": 5
       },
       "image": {
         "src": "img/github.svg",
@@ -26,17 +26,17 @@
       }
     },
     "opacity": {
-      "value": 0.7066667775163579,
-      "random": true,
+      "value": 0.5,
+      "random": false,
       "anim": {
         "enable": true,
-        "speed": 0.50547598989048,
-        "opacity_min": 0.12636899747262,
-        "sync": true
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
       }
     },
     "size": {
-      "value": 2,
+      "value": 3,
       "random": true,
       "anim": {
         "enable": false,
@@ -47,22 +47,22 @@
     },
     "line_linked": {
       "enable": true,
-      "distance": 149.64708229758168,
-      "color": "#698bf4",
-      "opacity": 0.357490252155334,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
       "width": 1
     },
     "move": {
       "enable": true,
-      "speed": 0.2,
+      "speed": 0.3,
       "direction": "bottom",
-      "random": false,
-      "straight": true,
+      "random": true,
+      "straight": false,
       "out_mode": "out",
       "bounce": false,
       "attract": {
         "enable": false,
-        "rotateX": 1024.0252067743202,
+        "rotateX": 600,
         "rotateY": 1200
       }
     }
@@ -72,7 +72,7 @@
     "events": {
       "onhover": {
         "enable": false,
-        "mode": "grab"
+        "mode": "repulse"
       },
       "onclick": {
         "enable": false,
@@ -106,5 +106,5 @@
       }
     }
   },
-  "retina_detect": false
+  "retina_detect": true
 }

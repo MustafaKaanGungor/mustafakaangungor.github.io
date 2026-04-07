@@ -2,11 +2,14 @@
     import Step from "./Step.svelte";
     import photo from "$lib/images/ContactBG.jpg"
     import tapeover from "$lib/images/tapeover.jpg"
+    import railwarden from "$lib/images/railwarden.png"
+    import kitchenchaos from "$lib/images/kitchenchaos.jpg"
+    import flood from "$lib/images/splash.png"
 
     let steps = [
         {
             name: "Railwarden",
-            photo: photo,
+            photo: railwarden,
             description:
                 "A train defence game mixing endless runner with tower defence mechanics.",
             href:"https://store.steampowered.com/app/4480720/Railwarden/"
@@ -16,6 +19,7 @@
             photo: photo,
             description:
                 "A WIP action FPS platformer with fast paced combat and completely hand written unique sphere based movement",
+            href:"https://bringsalavat.itch.io"
         },
         {
             name: "Tapeover",
@@ -25,22 +29,25 @@
             href:"https://woodenpillowgames.itch.io/tape-over"
         },
         {
-            name: "Smoljames Store",
-            photo: photo,
+            name: "Kitchen Chaos",
+            photo: kitchenchaos,
             description:
-                "a CMS for managing project and Stripe is used for all transaction handling.",
+                "Overcooked clone with multiplayer features",
+                href:"https://bringsalavat.itch.io"
         },
         {
-            name: "Utlimate Todos",
-            photo: photo,
+            name: "Million Year Flood",
+            photo: flood,
             description:
-                "Test for model robustness with customized test profiles and receive exhaustive reporting on the performance and potential vulnerabilities of your model.",
+                "Mechanical city tires to escape from a huge flood.",
+                href:"https://bringsalavat.itch.io"
         },
         {
             name: "My Other Prototypes and Jam Games",
             photo: photo,
             description:
                 "Many more games I did on various game jams are hosted on my Itch account",
+                href:"https://bringsalavat.itch.io"
         }
     ];
 </script>
@@ -64,7 +71,7 @@
             </p>
         </div>
         <div class="relative shadow-2xl grid place-items-center">
-            <video src="/my-video.mp4"
+            <video src="/portfolio.mp4"
             autoplay
             muted
             loop
@@ -83,7 +90,7 @@
         <div class="w-full max-w-3xl mx-auto aspect-video">
             <p class="text-center text-2xl py-5">Summary</p>
             <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/4iBLOK6sNtg?si=BFGuQ2EH3g3TguzF"
                 title="YouTube video"
                 class="w-full h-full rounded-lg"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -129,7 +136,7 @@
                     href="/resume.pdf"
                     download
                     target="_blank"
-                    class="p-3 sm:p-4 flex flex-col gap-2 rounded-xl max-w-m border border-solid text-center cursor-pointer group/item duration-200 border-teal-900 hover:border-teal-800"
+                    class="p-3 sm:p-4 flex flex-col gap-2 rounded-xl max-w-m border border-solid text-center cursor-pointer group/item duration-200 border-teal-700 hover:border-teal-500"
                 >                   
                     <h6 class="font-medium text-sm sm:text-base">
                         My CV
@@ -147,7 +154,7 @@
                     href="/transkript.pdf"
                     download
                     target="_blank"
-                    class="p-3 sm:p-4 flex flex-col gap-2 rounded-xl max-w-m border border-solid text-center cursor-pointer group/item duration-200 border-teal-900 hover:border-teal-800"
+                    class="p-3 sm:p-4 flex flex-col gap-2 rounded-xl max-w-m border border-solid text-center cursor-pointer group/item duration-200 border-teal-700 hover:border-teal-500"
                 >                   
                     <h6 class="font-medium text-sm sm:text-base">
                         Gazi University, Computer Engineering, CGPA: 3.16
