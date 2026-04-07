@@ -1,43 +1,28 @@
 <script>
     import Step from "./Step.svelte";
     import photo from "$lib/images/ContactBG.jpg"
+    import tapeover from "$lib/images/tapeover.jpg"
 
     let steps = [
         {
-            name: "Smoljames Store",
+            name: "Railwarden",
             photo: photo,
             description:
-                "a CMS for managing project and Stripe is used for all transaction handling.",
+                "A train defence game mixing endless runner with tower defence mechanics.",
+            href:"https://store.steampowered.com/app/4480720/Railwarden/"
         },
         {
-            name: "Utlimate Todos",
+            name: "Dreamcore (WIP)",
             photo: photo,
             description:
-                "Test for model robustness with customized test profiles and receive exhaustive reporting on the performance and potential vulnerabilities of your model.",
+                "A WIP action FPS platformer with fast paced combat and completely hand written unique sphere based movement",
         },
         {
-            name: "Pokédex",
-            photo: photo,
+            name: "Tapeover",
+            photo: tapeover,
             description:
-                "Augment your datasets with our filters and dataset manipulations to ensure your models are trained on the highest quality datasets (coming soon).",
-        },
-        {
-            name: "Smoljames Store",
-            photo: photo,
-            description:
-                "a CMS for managing project and Stripe is used for all transaction handling.",
-        },
-        {
-            name: "Utlimate Todos",
-            photo: photo,
-            description:
-                "Test for model robustness with customized test profiles and receive exhaustive reporting on the performance and potential vulnerabilities of your model.",
-        },
-        {
-            name: "Pokédex",
-            photo: photo,
-            description:
-                "Augment your datasets with our filters and dataset manipulations to ensure your models are trained on the highest quality datasets (coming soon).",
+                "A physics based platformer where player is playing as a tape",
+            href:"https://woodenpillowgames.itch.io/tape-over"
         },
         {
             name: "Smoljames Store",
@@ -52,11 +37,11 @@
                 "Test for model robustness with customized test profiles and receive exhaustive reporting on the performance and potential vulnerabilities of your model.",
         },
         {
-            name: "Pokédex",
+            name: "My Other Prototypes and Jam Games",
             photo: photo,
             description:
-                "Augment your datasets with our filters and dataset manipulations to ensure your models are trained on the highest quality datasets (coming soon).",
-        },
+                "Many more games I did on various game jams are hosted on my Itch account",
+        }
     ];
 </script>
 
