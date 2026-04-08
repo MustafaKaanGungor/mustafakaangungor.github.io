@@ -90,8 +90,9 @@
         <div class="w-full max-w-3xl mx-auto aspect-video">
             <p class="text-center text-2xl py-5">Summary</p>
             <iframe
-                src="https://www.youtube.com/embed/4iBLOK6sNtg?si=BFGuQ2EH3g3TguzF"
+                src="https://www.youtube.com/embed/mExyyUo2Gno?si=eKj8f5e9X-JNCuWJ"
                 title="YouTube video"
+                frameborder="0"
                 class="w-full h-full rounded-lg"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
