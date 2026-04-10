@@ -40,7 +40,7 @@
             photo: flood,
             description:
                 "Mechanical city tires to escape from a huge flood.",
-                href:"https://bringsalavat.itch.io"
+                href:"https://github.com/MustafaKaanGungor/MillionYearFlood"
         },
         {
             name: "My Other Prototypes and Jam Games",
@@ -168,6 +168,24 @@
                         </div>
                         <p class="absolute">
                             Download Transcript
+                        </p>
+                    </div>
+                </a>
+
+                <a
+                    href="https://github.com/MustafaKaanGungor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 sm:p-4 flex flex-col gap-2 rounded-xl max-w-m border border-solid text-center cursor-pointer group/item duration-200 border-teal-700 hover:border-teal-500"
+                >                   
+                    <h6 class="font-medium text-sm sm:text-base">
+                        GitHub Profile
+                    </h6>
+                    <div class="rounded-xl border-teal-700 border border-solid relative flex place-content-center place-items-center rounded-b-2xl bg-linear-to-tl overflow-hidden from-teal-600 via-green-600 to-yellow-600">
+                        <div class="opacity-0 p-5 group-hover/item:opacity-100 transition-all rounded-xl h-full w-full bg-cover bg-center object-scale-up" style="background-image: url({photo})">  
+                        </div>
+                        <p class="absolute">
+                            View GitHub
                         </p>
                     </div>
                 </a>
