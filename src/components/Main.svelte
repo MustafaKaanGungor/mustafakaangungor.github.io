@@ -92,7 +92,6 @@
             <iframe
                 src="https://www.youtube.com/embed/mExyyUo2Gno?si=eKj8f5e9X-JNCuWJ"
                 title="YouTube video"
-                frameborder="0"
                 class="w-full h-full rounded-lg"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
@@ -127,8 +126,11 @@
                 class="flex flex-col lg:justify-center text-center lg:text-left gap-6 md:gap-8 lg:gap-10"
             >
                 <p class="text-base sm:text-lg md:text-xl">
-                    Expertise in <span class="text-teal-400"> gameplay and system programming.</span> Familiar with multiplayer systems.
-                    Strong understanding of <span class="text-teal-400">algorithms and data structures,</span> ensuring efficient problem-solving and code optimization.
+                    I specialize in <span class="text-teal-400">gameplay and system programming.</span> 
+                    My background in <span class="text-teal-400">algorithms and data structures</span> enables efficient problem-solving and code 
+                    optimization across diverse software environments. In addition to game development, 
+                    I develop <span class="text-teal-400">web applications</span> using <span class="text-teal-400">Svelte</span> for frontend development and <span class="text-teal-400">Spring</span> for backend architecture. 
+                    I prioritize system stability and performance-oriented engineering in both game systems and full-stack web solutions.
                 </p>
             </div>
 

@@ -5,6 +5,7 @@
 <a
     href={step.href}
     target="_blank"
+    rel="noopener noreferrer"
     class="p-3 sm:p-4 flex flex-col gap-2 rounded-xl border border-solid text-center cursor-pointer group/item duration-200 border-teal-700 hover:border-teal-500"
 >
     <div
@@ -12,7 +13,7 @@
     >
     </div>
     <div>
-        <img src={step.photo} alt="" class="w-64 h-36 mx-auto"/>
+        <img src={step.photo} alt="projectPhoto" loading="lazy" class="w-full h-36"/>
     </div>
     <h6 class="font-medium text-sm sm:text-base">
         {step.name}
