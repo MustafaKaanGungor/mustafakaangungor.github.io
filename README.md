@@ -1,42 +1,28 @@
-# sv
+# Mustafa Kaan Güngör - Portfolio
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal portfolio website showcasing my work as a Unity Developer.
 
-## Creating a project
+[View Live](https://mustafakaangungor.github.io)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Tech Stack
 
-```sh
-# create a new project
-npx sv create my-app
-```
+- SvelteKit 5
+- Tailwind CSS v4
+- Vite
 
-To recreate this project with the same configuration:
+## Getting Started
 
-```sh
-# recreate this project
-npx sv@0.14.0 create --template minimal --no-types --install npm portfolioProject
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Deployment
 
-To create a production version of your app:
+Build outputs to `/docs`. Push to `main` branch and enable GitHub Pages in repo settings.
 
-```sh
-npm run build
-```
+## Contact
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- [GitHub](https://github.com/mustafakaangungor)
+- [Itch.io](https://bringsalavat.itch.io)
+- [Steam](https://store.steampowered.com/app/4480720/Railwarden/)
