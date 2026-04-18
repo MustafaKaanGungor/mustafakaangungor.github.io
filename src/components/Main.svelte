@@ -5,6 +5,7 @@
     import railwarden from "$lib/images/railwarden.png"
     import kitchenchaos from "$lib/images/kitchenchaos.jpg"
     import flood from "$lib/images/splash.png"
+    import map from "$lib/images/map.png"
 
     let steps = [
         {
@@ -15,11 +16,11 @@
             href:"https://store.steampowered.com/app/4480720/Railwarden/"
         },
         {
-            name: "Dreamcore (WIP)",
-            photo: photo,
+            name: "Map the Islands",
+            photo: map,
             description:
-                "A WIP action FPS platformer with fast paced combat and completely hand written unique sphere based movement",
-            href:"https://bringsalavat.itch.io"
+                "A map draing cartopgraphy game",
+            href:"https://ruhan07.itch.io/map-the-islands"
         },
         {
             name: "Tapeover",
@@ -90,7 +91,7 @@
         <div class="w-full max-w-3xl mx-auto aspect-video">
             <p class="text-center text-2xl py-5">Summary</p>
             <iframe
-                src="https://www.youtube.com/embed/mExyyUo2Gno?si=eKj8f5e9X-JNCuWJ"
+                src="https://www.youtube.com/embed/nUNwTsyT9nw?si=o5SOKJztLC_4dgTc"
                 title="YouTube video"
                 class="w-full h-full rounded-lg"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
