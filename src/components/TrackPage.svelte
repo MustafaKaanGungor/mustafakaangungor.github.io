@@ -1,6 +1,5 @@
 <script>
     import { person, site } from '$lib/data/site.js';
-    import { otherTrack } from '$lib/data/tracks.js';
     import CvSection from './CvSection.svelte';
     import Footer from './Footer.svelte';
     import Header from './Header.svelte';
@@ -9,7 +8,6 @@
 
     let { track } = $props();
 
-    let other = $derived(otherTrack(track.id));
     let canonical = $derived(site.url + track.path);
 
     let tabs = $derived(
@@ -21,8 +19,6 @@
             { name: 'Contact', link: '#contact' }
         ].filter(Boolean)
     );
-
-    let cross = $derived({ label: `${other.shortLabel} version`, href: other.path });
 </script>
 
 <svelte:head>
@@ -46,7 +42,7 @@
     {/if}
 </svelte:head>
 
-<Header brand={person.name} home="/" {tabs} {cross} />
+<Header brand={person.name} home="/" {tabs} />
 
 <main class="mx-auto w-full max-w-6xl flex-1 px-6">
     <Hero hero={track.hero} cv={track.cv} />

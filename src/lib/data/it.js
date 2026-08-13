@@ -7,7 +7,6 @@
 export default {
     id: 'it',
     label: 'IT / Infrastructure',
-    shortLabel: 'IT', // used by the header's cross-track link
     blurb: 'Linux, AWS, Nginx, Docker and CI/CD — deploying, securing and monitoring production systems.',
     icon: 'server',
     path: '/it/',

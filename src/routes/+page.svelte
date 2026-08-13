@@ -29,11 +29,6 @@
 
 <main class="mx-auto flex w-full max-w-5xl flex-1 flex-col justify-center px-6 py-16 sm:py-24">
     <div class="flex flex-col gap-6">
-        <p class="flex items-center gap-2.5 text-xs uppercase tracking-[0.25em] text-muted">
-            <span class="size-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-            {person.availability}
-        </p>
-
         <h1
             class="font-display text-[clamp(2rem,7.5vw,4.5rem)] font-extrabold tracking-tight leading-[0.95] break-words"
         >

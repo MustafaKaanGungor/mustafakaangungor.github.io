@@ -36,7 +36,9 @@ npm run preview    # serve the real docs/ build
 
 - `site.js` — everything shared by both tracks: person, education, organizations, contacts, languages.
 - `game.js` / `it.js` — one default-exported object per track.
-- `tracks.js` — registry plus `otherTrack(id)`, which drives the header's cross-track link.
+- `tracks.js` — the registry the chooser page iterates over.
+
+The two tracks are deliberately **not** cross-linked from the header. Switching between them goes through the chooser at `/`, reachable by clicking the brand.
 
 ### Adding a project
 
