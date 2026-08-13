@@ -1,179 +1,156 @@
 # AGENTS.md
 
-This document provides guidance for AI agents working with this SvelteKit portfolio project.
+Guidance for AI agents working on this SvelteKit portfolio.
 
-## Project Overview
+## Project overview
 
-- **Framework**: SvelteKit with Svelte 5 (runes mode)
-- **Styling**: Tailwind CSS v4
-- **Build Tool**: Vite
-- **Language**: JavaScript (no TypeScript configured)
-- **Testing**: Not configured
+- **Framework**: SvelteKit 2 with Svelte 5 (runes mode, enforced in `svelte.config.js`)
+- **Styling**: Tailwind CSS v4 via `@tailwindcss/vite` — no `tailwind.config`, tokens live in `src/app.css`
+- **Build**: Vite, output by `adapter-static` into `docs/`
+- **Language**: JavaScript (no TypeScript, `checkJs: false`)
+- **Testing / linting**: not configured
 
-## Build/Lint/Test Commands
+## The one thing to understand first
 
-### Development
+This site serves **two audience-specific portfolios from one codebase**:
+
+| Route | Page |
+|---|---|
+| `/` | Chooser — two cards linking to the tracks |
+| `/game/` | Game development portfolio |
+| `/it/` | IT / infrastructure portfolio |
+
+Both tracks use **identical components and identical design**. Only the *content* differs, and all of that content lives in `src/lib/data/`. The track pages are three lines each; they import a data object and hand it to `TrackPage.svelte`.
+
+**Never hardcode content into a component.** If you're editing markup to change what the site says, you're in the wrong file.
+
+## Commands
+
 ```bash
-npm run dev                    # Start dev server with hot reload
-npm run dev -- --open          # Start dev server and open browser
+npm run dev        # dev server
+npm run build      # production build into docs/
+npm run preview    # serve the real docs/ build
 ```
 
-### Production
-```bash
-npm run build                  # Build for production
-npm run preview                # Preview production build locally
+## Content contract (`src/lib/data/`)
+
+- `site.js` — everything shared by both tracks: person, education, organizations, contacts, languages.
+- `game.js` / `it.js` — one default-exported object per track.
+- `tracks.js` — registry plus `otherTrack(id)`, which drives the header's cross-track link.
+
+### Adding a project
+
+Append one object to `projects.items` in the relevant track file. Nothing else changes.
+
+```js
+{
+    name: 'Project Name',
+    image: someImport,   // or null → falls back to an icon tile
+    icon: 'server',      // only used when image is null; see Icon.svelte for names
+    description: '…',
+    href: 'https://…',   // or null → tile renders as a <div>, not a dead link
+    linkLabel: 'GitHub',
+    tech: ['Docker', 'Nginx'],
+    size: 'md'
+}
 ```
 
-### Utility
-```bash
-npm run prepare                # Sync SvelteKit types (runs automatically on install)
+### Bento sizing
+
+The projects grid is `grid-cols-2 lg:grid-cols-6`. Each item's `size` maps to a span in `ProjectTile.svelte`:
+
+| `size` | Span | Use for |
+|---|---|---|
+| `lg` | 4 cols × 2 rows | the one featured project |
+| `md` | 3 cols | half-width |
+| `sm` | 2 cols | default; thirds |
+
+**Keep each row's spans summing to 6**, or you'll leave a hole. The `/game` layout is `lg` + `sm` + `sm` (rows 1–2) then three `sm` (row 3). `/it` is `md` + `md`.
+
+### Accented prose
+
+Data files cannot contain markup. Prose that needs a highlighted phrase is an array of segments rendered by `RichText.svelte`:
+
+```js
+tagline: [
+    { text: 'I deploy ' },
+    { text: 'production Linux systems', accent: true },
+    { text: '.' }
+]
 ```
 
-**Note**: No linting or testing frameworks are configured. The project uses `checkJs: false` in jsconfig.json, meaning JavaScript is not type-checked.
+## Design system
 
-## Code Style Guidelines
+Tokens are defined in the `@theme` block of `src/app.css`. Use the semantic names, not raw Tailwind palette colours:
 
-### General Conventions
+| Token | Class | Role |
+|---|---|---|
+| `--color-ink` | `bg-ink` | page ground |
+| `--color-surface` | `bg-surface` | raised tiles |
+| `--color-line` | `border-line` | hairline borders |
+| `--color-body` | `text-body` | body copy |
+| `--color-muted` | `text-muted` | dates, metadata |
+| `--color-accent` | `text-accent` | the single accent |
 
-- **Indentation**: 4 spaces in this codebase (observe existing files)
-- **Line endings**: Platform-specific (Windows environment)
-- **Quotes**: Use single quotes for strings in JavaScript
-- **Semicolons**: Not used ( ASI style)
-- **Trailing commas**: Not used
+Rules:
 
-### Svelte Component Structure
+- **One accent.** Teal marks links, the timeline rail and the availability dot. Nothing else is coloured. No gradients.
+- **Hairlines, not boxes.** 1px `border-line`; hover moves the border to `accent/50` and lifts the element.
+- **Big type.** Hero headings use fluid `text-[clamp(…)]` rather than breakpoints — a long single word like "Infrastructure" overflows a 375px screen at a fixed `text-6xl`.
+- **Icons are inline SVG** in `Icon.svelte`. There is no icon CDN; do not add one.
+- **Scroll reveal** via `use:reveal` from `$lib/actions/reveal.js`. It arms the element only in the browser, so prerendered HTML stays visible without JS, and it no-ops under `prefers-reduced-motion`.
 
-Follow this order in `.svelte` files:
-1. `<script>` block at the top
-2. HTML markup
-3. `<style>` block (if present) at the bottom
+### Tailwind v4 gotcha
 
-### Svelte 5 Patterns
+Tailwind scans source for **complete literal class strings**. A class assembled by concatenation is never generated. Always write conditionals as whole strings:
 
-This project uses **Svelte 5 runes mode** (see `svelte.config.js`):
-- Use `$state()` for reactive state
-- Use `$props()` for component props
-- Use `{@render children()}` for slot content
-- Props are destructured: `let { propName } = $props()`
-- State is declared: `let count = $state(0)`
+```js
+// good
+const span = size === 'lg' ? 'lg:col-span-4 lg:row-span-2' : 'lg:col-span-2';
 
-```svelte
-<script>
-    let { children } = $props();
-    let count = $state(0);
-</script>
-
-<div>
-    {@render children()}
-</div>
+// broken — Tailwind never sees these classes
+const span = `lg:col-span-${cols}`;
 ```
 
-### File Naming Conventions
+## Routing and build
 
-- Svelte components: PascalCase (`Header.svelte`, `MainSection.svelte`)
-- JavaScript modules: camelCase (`utils.js`, `helpers.js`)
-- Route files: Use SvelteKit conventions (`+page.svelte`, `+layout.svelte`, `+server.js`)
-- Server files: Lowercase with descriptive names (`api/users/+server.js`)
+- **Page options live in `src/routes/+layout.js`**, never in a `.svelte` file. `prerender` and `ssr` exported from a `.svelte` file are silently ignored — that bug once left the site with no `index.html` at all.
+- `trailingSlash = 'always'` is what produces `docs/game/index.html` instead of `docs/game.html`. **Write internal links with a trailing slash** (`/it/`, not `/it`).
+- **SSR is on.** Components are rendered in Node at build time, so any `window`/`document` access at module or render scope fails the build. Put it in an event handler, an `$effect`, or an action.
+- Prefix paths to files in `static/` with `base` from `$app/paths` **at the point of use**. Data files store raw paths (`/transcript.pdf`); never concatenate `base` at module scope, because `paths.relative` resolves it per render.
 
-### Import Conventions
+## Deployment
 
-- Use `$lib` alias for internal modules: `import { utils } from '$lib/utils'`
-- Use relative imports for sibling/parent files: `import Header from '../components/Header.svelte'`
-- Group imports logically (external, internal, relative) when mixing
+There is no CI. `docs/` is the live site and is committed.
 
-### CSS/Styling Conventions
+1. `npm run build`
+2. `npm run preview` and check it
+3. Commit source **and** `docs/` together, push to `master`
 
-- Use Tailwind CSS utility classes extensively
-- Custom CSS goes in `src/app.css`
-- Tailwind v4 uses `@import "tailwindcss"` directive
-- Use `class` attribute, not `style`, for most styling
-- Use responsive prefixes: `sm:`, `md:`, `lg:` for breakpoints
+`static/CNAME` holds the custom domain. It must live in `static/`, not `docs/` — the adapter wipes `docs/` on every build, which is how the CNAME got lost once before.
 
-### Tailwind Color Scheme
-
-This portfolio uses a dark theme with violet accents:
-- Background: `bg-slate-950`
-- Primary accent: `text-violet-400`, `bg-violet-700`
-- Text: `text-white`, `text-slate-950`
-- Borders: `border-violet-950`, `border-violet-700`
-
-### HTML Template Conventions
-
-- Use semantic HTML elements (`<header>`, `<main>`, `<footer>`, `<section>`)
-- Use `class` for conditional styles with template literals
-- Include `viewport` meta tag for responsive design
-- Use `<svelte:head>` for page-specific head content
-
-### Component Patterns
-
-**Presentational Components** (e.g., `Header.svelte`, `Footer.svelte`):
-- Receive data via props
-- Handle minimal logic
-- Return rendered markup
-
-**Data Components** (e.g., `Main.svelte`):
-- Define data arrays within script block
-- Use `{#each}` blocks to iterate over data
-- Maintain internal state with `$state()`
-
-**Reusable Card/Step Components** (e.g., `Step.svelte`):
-- Accept data via props (`$props()`)
-- Use `<slot />` or `{@render children()}` for content projection
-- Include consistent styling and hover states
-
-### Responsive Design
-
-- Mobile-first approach
-- Breakpoints: `sm:` (640px+), `md:` (768px+), `lg:` (1024px+)
-- Use `flex-col` on mobile, `lg:flex-row` for larger screens
-- Test at multiple viewport sizes
-
-### Accessibility Considerations
-
-- Use semantic HTML
-- Include `alt` attributes for images
-- Use proper heading hierarchy (`h1` -> `h2` -> `h3`)
-- Ensure interactive elements are keyboard accessible
-
-## Project Structure
+## Structure
 
 ```
 src/
-├── app.css              # Global styles and Tailwind imports
-├── app.html             # HTML template
-├── components/          # Reusable Svelte components
-│   ├── Header.svelte
-│   ├── Footer.svelte
-│   ├── Main.svelte
-│   └── Step.svelte
-├── lib/                 # Library code (imported via $lib alias)
-│   └── index.js
-└── routes/              # SvelteKit pages
-    ├── +layout.svelte   # Root layout
-    └── +page.svelte     # Home page
+├── app.css                 # @theme tokens, reveal keyframes
+├── app.html                # shell only; per-page meta comes from <svelte:head>
+├── components/             # PascalCase, presentational, props-driven
+├── lib/
+│   ├── actions/reveal.js
+│   ├── data/               # ALL site content
+│   └── images/             # project screenshots, imported as ES modules
+└── routes/
+    ├── +layout.js          # prerender + trailingSlash
+    ├── +layout.svelte      # chrome only; header/footer are per page
+    ├── +page.svelte        # chooser
+    ├── game/+page.svelte
+    └── it/+page.svelte
 ```
 
-## Common Tasks
+## Conventions
 
-### Adding a New Component
-1. Create file in `src/components/`
-2. Use PascalCase filename
-3. Import with relative path: `import NewComponent from '../components/NewComponent.svelte'`
-
-### Adding a New Route
-1. Create directory in `src/routes/`
-2. Add `+page.svelte` for the page component
-3. Optionally add `+layout.svelte` for route-specific layout
-4. Use `+server.js` for API endpoints
-
-### Adding Global Styles
-1. Edit `src/app.css`
-2. Use Tailwind utilities or add custom CSS
-3. Avoid inline styles on components
-
-## Development Notes
-
-- The `.svelte-kit/` directory is generated - do not edit
-- `node_modules/` is managed by npm - do not edit manually
-- Use `npm run prepare` if TypeScript/SvelteKit types are out of sync
-- The project uses adapter-auto; deploy target may require specific adapter
+- 4-space indent, single quotes, semicolons in `.js`.
+- Components are PascalCase and receive data via `$props()`.
+- Reuse before adding: `Timeline.svelte` renders both experience and organizations; `SectionHeading` and `RichText` are used by every section.
+- Keep `alt` on images, use semantic elements, keep heading order sane, and give icon-only buttons an `aria-label`.
