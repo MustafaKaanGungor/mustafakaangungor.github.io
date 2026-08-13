@@ -1,30 +1,33 @@
 <script>
-    import ContactCard from './ContactCard.svelte';
-    import bg from "$lib/images/ContactBG.jpg";
-    import emailIcon from "$lib/images/email.png";
-    import linkedinIcon from "$lib/images/linkedin.png";
-    import phoneIcon from "$lib/images/phone-call.png";
+    import { reveal } from '$lib/actions/reveal.js';
+    import { person } from '$lib/data/site.js';
+    import ContactLinks from './ContactLinks.svelte';
 
-
-    const contacts = [
-        { title: 'Email', href: 'mailto:kaan062004@gmail.com', image: bg, icon: emailIcon},
-        { title: 'Phone', href: 'tel:+905061430161', image: bg, icon: phoneIcon},
-        { title: 'LinkedIn', href: 'https://www.linkedin.com/in/mustafa-kaan-gungor/', image: bg, icon: linkedinIcon},
-    ];
+    let { compact = false } = $props();
 </script>
 
-<footer
-    id="contact"
-    class="py-10 sm:py-24 border-t border-solid border-teal-900 flex flex-col gap-4 sm:gap-8 justify-center items-center"
->
-    <h1 class="text-white text-3xl sm:text-4xl md:text-5xl">
-        Contact me
-    </h1>
+<footer id="contact" class="border-t border-line {compact ? 'py-8' : 'py-20 sm:py-28'}">
+    {#if compact}
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p class="text-sm text-muted">{person.name} · {person.location}</p>
+            <ContactLinks compact />
+        </div>
+    {:else}
+        <div use:reveal class="reveal flex flex-col gap-8">
+            <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
+                Let's talk.
+            </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl mx-auto px-4">
-        {#each contacts as contact}
-            <ContactCard {contact}>
-            </ContactCard>
-        {/each}
-    </div>
+            <a
+                href="mailto:{person.email}"
+                class="w-fit break-all text-xl sm:text-3xl text-accent underline-offset-8 duration-200 hover:underline"
+            >
+                {person.email}
+            </a>
+
+            <ContactLinks />
+
+            <p class="pt-6 text-sm text-muted">{person.location}</p>
+        </div>
+    {/if}
 </footer>
