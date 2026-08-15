@@ -40,11 +40,11 @@
             {person.name}
         </h1>
 
-        <p class="max-w-2xl text-base sm:text-lg text-muted leading-relaxed">
+        <p class=" text-base sm:text-lg text-muted leading-relaxed">
             Computer engineering student at Gazi University. I build
             <span class="text-accent">games in Unity</span>
             and run
-            <span class="text-accent">Linux infrastructure</span>. Pick whichever is relevant to you.
+            <span class="text-accent">Linux infrastructure</span>.
         </p>
     </div>
 
