@@ -3,13 +3,7 @@
     import { person } from '$lib/data/site.js';
     import Icon from './Icon.svelte';
 
-    let {
-        brand = person.name,
-        home = '/',
-        tabs = [],
-        // { label, href } linking to the other track, or null on the chooser page.
-        cross = null
-    } = $props();
+    let { brand = person.name, home = '/', tabs = [] } = $props();
 
     let y = $state(0);
     let open = $state(false);
@@ -42,18 +36,9 @@
                     {tab.name}
                 </a>
             {/each}
-
-            {#if cross}
-                <a
-                    href="{base}{cross.href}"
-                    class="rounded-full border border-line px-3 py-1 text-sm text-accent duration-200 hover:border-accent"
-                >
-                    {cross.label}
-                </a>
-            {/if}
         </nav>
 
-        {#if tabs.length || cross}
+        {#if tabs.length}
             <button
                 type="button"
                 aria-label={open ? 'Close navigation' : 'Open navigation'}
@@ -84,18 +69,6 @@
                         </a>
                     </li>
                 {/each}
-
-                {#if cross}
-                    <li class="mt-2 border-t border-line pt-3">
-                        <a
-                            href="{base}{cross.href}"
-                            onclick={close}
-                            class="block py-2 text-base text-accent"
-                        >
-                            {cross.label}
-                        </a>
-                    </li>
-                {/if}
             </ul>
         </nav>
     {/if}

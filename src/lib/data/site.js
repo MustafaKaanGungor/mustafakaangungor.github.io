@@ -15,8 +15,7 @@ export const person = {
     phoneLabel: '+90 506 143 01 61',
     github: 'https://github.com/MustafaKaanGungor',
     linkedin: 'https://www.linkedin.com/in/mustafa-kaan-gungor/',
-    itch: 'https://bringsalavat.itch.io',
-    availability: 'Available for internships'
+    itch: 'https://bringsalavat.itch.io'
 };
 
 export const education = {

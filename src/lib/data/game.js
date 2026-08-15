@@ -10,7 +10,6 @@ import flood from '$lib/images/splash.png';
 export default {
     id: 'game',
     label: 'Game Development',
-    shortLabel: 'Game', // used by the header's cross-track link
     blurb: 'Unity gameplay and systems programming — shipped titles, prototypes and jam games.',
     icon: 'gamepad',
     path: '/game/',

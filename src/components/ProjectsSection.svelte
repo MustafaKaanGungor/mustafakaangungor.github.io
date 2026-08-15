@@ -27,9 +27,11 @@
     {/if}
 
     {#if projects.showreel}
-        <div use:reveal class="reveal mt-16 sm:mt-20 flex flex-col gap-4">
+        <div use:reveal class="reveal mt-16 sm:mt-20 flex flex-col items-center gap-4">
             <h3 class="font-display text-lg text-muted">{projects.showreel.label}</h3>
-            <div class="aspect-video w-full max-w-4xl overflow-hidden rounded-2xl border border-line">
+            <div
+                class="aspect-video w-full max-w-4xl mx-auto overflow-hidden rounded-2xl border border-line"
+            >
                 <iframe
                     src={projects.showreel.src}
                     title={projects.showreel.title}

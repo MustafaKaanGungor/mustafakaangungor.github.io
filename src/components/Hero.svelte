@@ -1,6 +1,5 @@
 <script>
     import { base } from '$app/paths';
-    import { person } from '$lib/data/site.js';
     import Icon from './Icon.svelte';
     import RichText from './RichText.svelte';
 
@@ -11,11 +10,6 @@
     id="intro"
     class="flex min-h-[78vh] flex-col justify-center gap-8 py-20 sm:py-28"
 >
-    <p class="flex items-center gap-2.5 text-xs uppercase tracking-[0.25em] text-muted">
-        <span class="size-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-        {person.availability}
-    </p>
-
     <!-- Fluid sizing rather than breakpoints: a long single word like
          "Infrastructure" overflows a 375px screen at a fixed text-6xl. -->
     <h1 class="font-display font-extrabold tracking-tight leading-[0.92] break-words">
